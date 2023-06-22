@@ -32,32 +32,32 @@ class ConsultOut(BaseModel):
 # -----------------------------------------------------------------------------------
 @app.get("/")
 def home():
-    return{"Health_check": "OK", "model version": model_version}
+    return{"Health_check": "OK"}
 
 
 # -----------------------------------------------------------------------------------
 #                       Consult Movies DataFrame
 # -----------------------------------------------------------------------------------
 
-@app.get('/cantidad_filmaciones_mes/{mes}', response_model=ConsultOut)
+@app.get('/cantidad_filmaciones_mes/{mes}')
 def cantidad_filmaciones_mes(mes:str):
     '''Se ingresa el mes y la funcion retorna la cantidad de peliculas que se estrenaron ese mes historicamente'''
     answer = movies_per_month(mes)
     return answer
 
-@app.get('/cantidad_filmaciones_dia{dia}', response_model=ConsultOut)
+@app.get('/cantidad_filmaciones_dia{dia}')
 def cantidad_filmaciones_dia(dia:str):
     '''Se ingresa el dia y la funcion retorna la cantidad de peliculas que se estrebaron ese dia historicamente'''
     answer = movies_per_day(dia)
     return answer
 
-@app.get('/score_titulo/{titulo}', response_model=ConsultOut)
+@app.get('/score_titulo/{titulo}')
 def score_titulo(titulo:str):
     '''Se ingresa el título de una filmación esperando como respuesta el título, el año de estreno y el score'''
     answer = title_score(titulo)
     return answer
 
-@app.get('/votos_titulo/{titulo}', response_model=ConsultOut)
+@app.get('/votos_titulo/{titulo}')
 def votos_titulo(titulo:str):
     '''Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. 
     La misma variable deberá de contar con al menos 2000 valoraciones, 
@@ -65,28 +65,28 @@ def votos_titulo(titulo:str):
     answer = title_votes(titulo)
     return answer
 
-@app.get('/get_actor/{nombre_actor}', response_model=ConsultOut)
+@app.get('/get_actor/{nombre_actor}')
 def get_actor(nombre_actor:str):
     '''Se ingresa el nombre de un actor que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. 
     Además, la cantidad de películas que en las que ha participado y el promedio de retorno'''
     answer = get_actor_info(nombre_actor)
     return answer
 
-@app.get('/get_director/{nombre_director}', response_model=ConsultOut)
+@app.get('/get_director/{nombre_director}')
 def get_director(nombre_director:str):
     ''' Se ingresa el nombre de un director que se encuentre dentro de un dataset debiendo devolver el éxito del mismo medido a través del retorno. 
     Además, deberá devolver el nombre de cada película con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.'''
     answer = get_director_info(nombre_director)
     return answer
 
-print(get_director('Steven Spielberg'))
 
 # -----------------------------------------------------------------------------------
 #                   ML - Recommendation System
 # -----------------------------------------------------------------------------------
-
-@app.get('/recomendacion/{titulo}', response_model=RecommendationOut)
+"""
+@app.get('/recomendacion/{titulo}')
 def recomendacion(titulo:str):
     '''Ingresas un nombre de pelicula y te recomienda las similares en una lista'''
     recommendations = recommend(titulo)
     return {'lista recomendada': recommendations}
+"""

@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve(strict = True).parent
 df = pd.read_csv(f'{BASE_DIR}/df_recommendation.csv')
 
 # Define Vectorizer and calculate vectorization
-cv = CountVectorizer(max_features = 5000,
+cv = CountVectorizer(max_features = 1000,
                      stop_words = 'english')
 vectors = cv.fit_transform(df['tags']).toarray()
 
