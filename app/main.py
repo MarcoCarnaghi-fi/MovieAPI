@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from app.model.model import recommend
-from app.model.model import __version__ as model_version
+#from app.model.model import recommend
+#from app.model.model import __version__ as model_version
 from app.functions.functions import movies_per_month, \
                                     movies_per_day, \
                                     title_score,\
