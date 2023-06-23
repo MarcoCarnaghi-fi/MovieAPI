@@ -57,6 +57,8 @@ def score_titulo(titulo:str):
     answer = title_score(titulo)
     return answer
 
+
+
 @app.get('/votos_titulo/{titulo}')
 def votos_titulo(titulo:str):
     '''Se ingresa el título de una filmación esperando como respuesta el título, la cantidad de votos y el valor promedio de las votaciones. 

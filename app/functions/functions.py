@@ -113,8 +113,8 @@ def title_score( titulo:str ):
 
   # Extract the values for the title, release_year, and popularity columns
   movie_title = movie['title'].values[0]
-  release_year = movie['release_year'].values[0]
-  popularity = movie['popularity'].values[0]
+  release_year = int(movie['release_year'].values[0])
+  popularity = float(movie['popularity'].values[0])
 
   # Return the movie title, release year, and popularity
   answer = {'titulo':movie_title, 'anio':release_year, 'popularidad':popularity}
@@ -139,9 +139,9 @@ def title_votes(titulo:str):
 
   # Extract the values for the title, release_year, and popularity columns
   movie_title = movie['title'].values[0]
-  release_year = movie['release_year'].values[0]
-  vote_average = movie['vote_average'].values[0]
-  vote_count = movie['vote_count'].values[0]
+  release_year = int(movie['release_year'].values[0])
+  vote_average = float(movie['vote_average'].values[0])
+  vote_count = float(movie['vote_count'].values[0])
 
   if vote_count >= 2000.0:
     # Return the movie title, release year, and votes
@@ -159,6 +159,7 @@ def title_votes(titulo:str):
 
 
 # GET_ACTOR
+#Note, I should make more robust this code to consider that the input may not be in th df
 def get_actor_info( nombre_actor:str ):
 
   # Filter the cast DataFrame to include only rows for the given actor
@@ -171,9 +172,9 @@ def get_actor_info( nombre_actor:str ):
                             right_on='id')
 
   # Calculate the sum and average of the 'return' column
-  return_sum = joined_df['return'].sum()
-  movies_count = joined_df['return'].count()
-  average_return = return_sum / movies_count
+  return_sum = float(joined_df['return'].sum())
+  movies_count = int(joined_df['return'].count())
+  average_return = float(return_sum / movies_count)
 
   actor_name = actor_df['name'].iloc[0]
 
