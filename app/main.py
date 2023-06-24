@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-#from app.model.model import recommend
-#from app.model.model import __version__ as model_version
+from app.model.model import recommend
+from app.model.model import __version__ as model_version
 from app.functions.functions import movies_per_month, \
                                     movies_per_day, \
                                     title_score,\
@@ -85,10 +85,10 @@ def get_director(nombre_director:str):
 # -----------------------------------------------------------------------------------
 #                   ML - Recommendation System
 # -----------------------------------------------------------------------------------
-"""
+
 @app.get('/recomendacion/{titulo}')
 def recomendacion(titulo:str):
     '''Ingresas un nombre de pelicula y te recomienda las similares en una lista'''
     recommendations = recommend(titulo)
     return {'lista recomendada': recommendations}
-"""
+

@@ -12,24 +12,21 @@ __version__ = '1.0.0'
 #Get base directory path
 BASE_DIR = Path(__file__).resolve(strict = True).parent
 
-# Load Dataframe of the movies tags
+# Load pickle file with similarity matrix
+with open(f"{BASE_DIR}/similar_movies_list.pkl","rb") as f:
+    recommendation_list = pickle.load(f)
+
 df = pd.read_csv(f'{BASE_DIR}/df_recommendation.csv')
 
-# Define Vectorizer and calculate vectorization
-cv = CountVectorizer(max_features = 1000,
-                     stop_words = 'english')
-vectors = cv.fit_transform(df['tags']).toarray()
-
-# Get recommendation based on vector similarity
-def recommend(movie:str):
+def recommend(movie):
     index = df[df['title'] == movie].index[0]
-    row_vector = np.array(vectors[index]).reshape(1, -1)
-    similarity = cosine_similarity(row_vector, vectors)[0]
-    similar_movies = sorted(list(enumerate(similarity)),reverse=True,key = lambda x: x[1])[1:6]
-    
-    recommendations = []
+    recommended_index = recommendation_list[index]
 
-    for i in similar_movies:
-        recommendations.append(df.iloc[i[0]].title)
+    recommendation = []
+    for movie_index in recommended_index:
+        recommendation.append(df.iloc[movie_index].title)
+
+    for i in range(len(recommendation) // 2):
+        recommendation[i], recommendation[-1 - i] = recommendation[-1 - i], recommendation[i]
     
-    return recommendations
+    return recommendation
