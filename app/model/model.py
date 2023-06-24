@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve(strict = True).parent
 with open(f"{BASE_DIR}/similar_movies_list.pkl","rb") as f:
     recommendation_list = pickle.load(f)
 
-df = pd.read_csv(f'{BASE_DIR}/df_recommendation.csv')
+df = pd.read_csv(f'{BASE_DIR}/df_index.csv')
 
 def recommend(movie):
     index = df[df['title'] == movie].index[0]

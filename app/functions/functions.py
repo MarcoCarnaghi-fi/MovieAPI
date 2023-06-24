@@ -31,9 +31,9 @@ with open(f"{BASE_DIR}/df_crew_dict.pkl","rb") as f:
 
 df_crew = pd.DataFrame(temp_dict)
 '''
-df_movies = pd.read_csv(f'{BASE_DIR}/datasets/df_movies_clean.csv')
+df_movies = pd.read_csv(f'{BASE_DIR}/datasets/df_movies.csv')
 df_cast = pd.read_csv(f'{BASE_DIR}/datasets/df_cast.csv')
-df_crew = pd.read_csv(f'{BASE_DIR}/datasets/df_crew.csv')
+df_crew = pd.read_csv(f'{BASE_DIR}/datasets/df_directors.csv')
 
 
 # Define Functions/Methods
@@ -190,7 +190,7 @@ def get_director_info( nombre_director:str ):
   # Filter the crew DataFrame to include only rows for the given director
   director_df = df_crew[df_crew['name'].str.lower() == nombre_director.lower()]
 
-  director_df = director_df[director_df['job'] == 'Director']
+  #director_df = director_df[director_df['job'] == 'Director']
 
   # Join the director_df with the movies_df on the 'id' column
   joined_df = director_df.merge(df_movies,
