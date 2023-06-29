@@ -80,4 +80,4 @@ Finally, the API including the methods related to querying information of movies
 <sub> **NOTE**: It should be considered that the API was deployed using the Free version of Render, therefore a minimal version was created to fit the available resources. <sub/>
 
 ## **Video**
-A brief video showing the API working and explaining some of the developed code can be find [here]()
+A brief video showing the API working and explaining some of the developed code can be find [here](https://drive.google.com/file/d/1ScnhpF86KuLGEZgg1bwZK8Okork6fiTy/view?usp=sharing)
